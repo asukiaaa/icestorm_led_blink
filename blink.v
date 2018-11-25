@@ -4,7 +4,7 @@ module top
    output [7:0] LED
    );
 
-   parameter TOGGLE_TIMER_BIT = 23;
+   parameter TOGGLE_CLOCK = 32'd12000000;
 
    reg [31:0]   counter = 32'd0;
    reg [7:0]    led_state = 8'd0;
@@ -13,7 +13,7 @@ module top
 
    always @(posedge clk)
      begin
-        if (counter[TOGGLE_TIMER_BIT] == 1'b1)
+        if (counter == TOGGLE_CLOCK)
           begin
              counter <= 32'd0;
              if (led_state == 8'd1)
